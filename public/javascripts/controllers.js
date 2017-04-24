@@ -40,12 +40,15 @@ function PollNewCtrl($scope, $location, Poll) {
 	// Define an empty poll model object
 	$scope.poll = {
 		question: '',
-		choices: [ { text: '' }, { text: '' }, { text: '' }]
+		sub : [],
+		choices: [ { text: '' , desc: ''}]
 	};
+
+
 	
 	// Method to add an additional choice option
 	$scope.addChoice = function() {
-		$scope.poll.choices.push({ text: '' });
+		$scope.poll.choices.push({ text: ''  ,desc: ''});
 	};
 	
 	// Validate and save the new poll to the database

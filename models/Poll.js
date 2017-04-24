@@ -20,6 +20,6 @@ var askSchema = new mongoose.Schema({
 // Document schema for polls
 exports.PollSchema = new mongoose.Schema({
 	question: { type: String, required: true },
-	sub : askSchema,
+	sub : [askSchema],
 	choices: [choiceSchema]
 });
