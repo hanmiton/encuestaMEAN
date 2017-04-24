@@ -1,6 +1,7 @@
 // Connect to MongoDB using Mongoose
 var mongoose = require('mongoose');
 var db;
+
 if (process.env.VCAP_SERVICES) {
    var env = JSON.parse(process.env.VCAP_SERVICES);
    db = mongoose.createConnection(env['mongodb-2.2'][0].credentials.url);
@@ -8,6 +9,19 @@ if (process.env.VCAP_SERVICES) {
    db = mongoose.createConnection('localhost', 'pollsapp');
 }
 
+
+/*mongoose.connect('mongodb://localhost:27017/encuesta', function(err){
+//mongoose.connect('mongodb://node:node@ds023644.mlab.com:23644/hanmilton',function(err){
+
+	if(err){
+		console.log('Not Connected to the database: ' + err);
+	}
+	else{
+		console.log('Successfully connected to MongoDB');
+	}
+});
+
+*/
 // Get Poll schema and model
 var PollSchema = require('../models/Poll.js').PollSchema;
 var Poll = db.model('polls', PollSchema);
