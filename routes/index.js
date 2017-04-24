@@ -2,15 +2,15 @@
 var mongoose = require('mongoose');
 var db;
 
-if (process.env.VCAP_SERVICES) {
-   var env = JSON.parse(process.env.VCAP_SERVICES);
-   db = mongoose.createConnection(env['mongodb-2.2'][0].credentials.url);
-} else {
-   db = mongoose.createConnection('localhost', 'pollsapp');
-}
+//if (process.env.VCAP_SERVICES) {
+   //var env = JSON.parse(process.env.VCAP_SERVICES);
+  // db = mongoose.createConnection(env['mongodb-2.2'][0].credentials.url);
+//} else {
+  // db = mongoose.createConnection('localhost', 'pollsapp');
+//}
 
 
-/*mongoose.connect('mongodb://localhost:27017/encuesta', function(err){
+db = mongoose.connect('mongodb://localhost:27017/encuesta', function(err){
 //mongoose.connect('mongodb://node:node@ds023644.mlab.com:23644/hanmilton',function(err){
 
 	if(err){
