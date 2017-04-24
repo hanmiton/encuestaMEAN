@@ -21,7 +21,7 @@ db = mongoose.connect('mongodb://localhost:27017/encuesta', function(err){
 	}
 });
 
-*/
+
 // Get Poll schema and model
 var PollSchema = require('../models/Poll.js').PollSchema;
 var Poll = db.model('polls', PollSchema);
