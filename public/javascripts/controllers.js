@@ -65,7 +65,7 @@ function PollNewCtrl($scope, $location, Poll) {
 				}
 			}
 		
-			if(choiceCount > 1) {
+			if(choiceCount > 0) {
 				// Create a new poll from the model
 				var newPoll = new Poll(poll);
 				
