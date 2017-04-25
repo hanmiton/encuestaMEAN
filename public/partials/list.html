@@ -22,8 +22,20 @@
 		<li ng-repeat="poll in polls | filter:query">
 			<div class="well well-lg">
 					<strong>{{poll.question}}</strong>
+						<div ng-hide="poll.userVoted">
+						<p class="lead">Seleccione una de las siguientes opciones:</p>
+							<form role="form" ng-submit="vote()">
+								<div ng-repeat="choice in poll.choices" class="radio">
+									<label>
+											<input type="radio" name="choice" ng-model="poll.userVote" value="{{choice._id}}">
+										{{choice.text}}
+											<input ng-hide="choice.text != 'otro'"  type="text" name="desc"  ng-model="poll.desc" placeholder="respuesta abierta">
+									</label>			
+								</div>
+									
+							</form>
+						</div>
 			</div>
-			<a href="#/poll/{{poll._id}}">{{poll.question}}</a>
 		</li>
 	</ul>
 </div>
