@@ -34,7 +34,7 @@ exports.index = function(req, res) {
 // JSON API for list of polls
 exports.list = function(req, res) {
 	// Query Mongo for polls, just get back the question text
-	Poll.find({}, 'question', function(error, polls) {
+	Poll.find({}, '', function(error, polls) {
 		res.json(polls);
 	});
 };

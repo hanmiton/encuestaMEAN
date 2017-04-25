@@ -1,6 +1,7 @@
 <div class="page-header">
-	<h1>Lista de Encuestas</h1>
+	<h1>Encuesta</h1>
 </div>
+<!--
 <div class="row">
 	<div class="col-xs-5">
 		<a href="#/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Nueva Encuesta </a>
@@ -9,6 +10,7 @@
 		<input type="text" class="form-control" ng-model="query" placeholder="Buscar Pregunta">
 	</div>
 </div>
+-->
 <div class="row">
 	<div class="col-xs-12"><hr></div>
 </div>
@@ -18,6 +20,9 @@
 	</ul>
 	<ul ng-switch-default>
 		<li ng-repeat="poll in polls | filter:query">
+			<div class="well well-lg">
+					<strong>{{poll.question}}</strong>
+			</div>
 			<a href="#/poll/{{poll._id}}">{{poll.question}}</a>
 		</li>
 	</ul>
