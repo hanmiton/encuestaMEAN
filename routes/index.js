@@ -43,7 +43,10 @@ exports.list = function(req, res) {
 exports.poll = function(req, res) {
 	// Poll ID comes in the URL
 	var pollId = req.params.id;
+
 	
+	//console.log(pollId);
+
 	// Find the poll by its ID, use lean as we won't be changing it
 	Poll.findById(pollId, '', { lean: true }, function(err, poll) {
 		if(poll) {
@@ -82,12 +85,14 @@ exports.poll = function(req, res) {
 
 // JSON API for creating a new poll
 exports.create = function(req, res) {
+	//console.log(req.body);
 	var reqBody = req.body,
 			// Filter out choices with empty text
 			choices = reqBody.choices.filter(function(v) { return v.text != ''; }),
 			// Build up poll object to save
 			pollObj = {question: reqBody.question, choices: choices};
-				
+		
+
 	// Create poll model from built up poll object
 	var poll = new Poll(pollObj);
 	
@@ -103,12 +108,20 @@ exports.create = function(req, res) {
 
 exports.vote = function(socket) {
 	socket.on('send:vote', function(data) {
+		
+
 		var ip = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
 		
 		Poll.findById(data.poll_id, function(err, poll) {
-			var choice = poll.choices.id(data.choice);
-			choice.votes.push({ ip: ip });
 			
+			
+			var choice = poll.choices.id(data.choice);
+			var desc = data.desc;
+			choice.desc= desc;
+			//console.log('descripcion' + desc);
+			//console.log(choice);
+			choice.votes.push({ ip: ip });
+			//console.log('descripcion' + choice.desc);			
 			poll.save(function(err, doc) {
 				var theDoc = { 
 					question: doc.question, _id: doc._id, choices: doc.choices, 
@@ -127,7 +140,7 @@ exports.vote = function(socket) {
 
 						if(vote.ip === ip) {
 							theDoc.userVoted = true;
-							theDoc.userChoice = { _id: choice._id, text: choice.text };
+							theDoc.userChoice = { _id: choice._id, text: choice.text};
 						}
 					}
 				}

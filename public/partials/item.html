@@ -12,8 +12,9 @@
 		<div ng-repeat="choice in poll.choices" class="radio">
 			<label>
 				<input type="radio" name="choice" ng-model="poll.userVote" value="{{choice._id}}">
-				{{choice.text}}
-			</label>
+					{{choice.text}}
+				<input ng-hide="choice.text != 'otro'"  type="text" name="desc"  ng-model="poll.desc" placeholder="respuesta abierta">
+			</label>			
 		</div>
 		<p><hr></p>
 		<div class="row">
