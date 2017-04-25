@@ -3,12 +3,15 @@ function PollListCtrl($scope, Poll) {
 	$scope.polls = Poll.query();
 
 	console.log($scope.polls);
+
+	//tratando de guardar en general cada pregunta
+	
 }
 
 // Controller for an individual poll
 function PollItemCtrl($scope, $routeParams, socket, Poll) {	
 	$scope.poll = Poll.get({pollId: $routeParams.pollId});
-	
+
 	socket.on('myvote', function(data) {
 		if(data._id === $routeParams.pollId) {
 			$scope.poll = data;

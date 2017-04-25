@@ -18,13 +18,14 @@
 	<ul ng-switch-when="0">
 		<li><em>No preguntas en la base de datos quieres crear una <a href="#/new">create one</a>?</li>
 	</ul>
+	<form role="form" ng-submit="vote()">
 	<ul ng-switch-default>
 		<li ng-repeat="poll in polls | filter:query">
 			<div class="well well-lg">
 					<strong>{{poll.question}}</strong>
-						<div ng-hide="poll.userVoted">
+						<div>
 						<p class="lead">Seleccione una de las siguientes opciones:</p>
-							<form role="form" ng-submit="vote()">
+							
 								<div ng-repeat="choice in poll.choices" class="radio">
 									<label>
 											<input type="radio" name="choice" ng-model="poll.userVote" value="{{choice._id}}">
@@ -32,17 +33,17 @@
 											<input ng-hide="choice.text != 'otro'"  type="text" name="desc"  ng-model="poll.desc" placeholder="respuesta abierta">
 									</label>			
 								</div>
-								<div class="row">
+								
+						</div>						
+			</div>
+		</li>
+		<div class="row">
 									<div class="col-xs-6">
 								 		<button class="btn btn-primary pull-left" type="submit">Enviar &raquo;</button>
 									</div>
 								</div>
-							</form>
-						</div>
-
-						
-			</div>
-		</li>
+	</form>
 	</ul>
+
 </div>
 <p>&nbsp;</p>
